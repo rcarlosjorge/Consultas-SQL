@@ -344,5 +344,5 @@ SELECT producto.nombre FROM fabricante INNER JOIN producto ON fabricante.codigo 
 
 --1.1.8 Subconsultas (En la cláusula HAVING)
 --Devuelve un listado con todos los nombres de los fabricantes que tienen el mismo número de productos que el fabricante Lenovo.
-
+SELECT fabricante.nombre, COUNT(producto.codigo) FROM fabricante INNER JOIN producto ON fabricante.codigo = producto.codigo_fabricante GROUP BY fabricante.nombre HAVING COUNT(producto.codigo) >= (SELECT COUNT(producto.codigo) FROM fabricante INNER JOIN producto ON fabricante.codigo = producto.codigo_fabricante WHERE fabricante.nombre = 'Lenovo');
 
